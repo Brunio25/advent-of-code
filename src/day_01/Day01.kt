@@ -18,7 +18,7 @@ class Day01 : Day() {
         }
         .sumOf { abs(it.second - it.first) }
 
-    override fun part2(): Any {
+    override fun part2(): Int {
         val (left, right) = inputList.unzip()
 
         val countMap = right.groupBy { it }
