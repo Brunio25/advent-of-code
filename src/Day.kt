@@ -1,4 +1,5 @@
 import java.io.File
+import java.nio.file.FileSystems
 import kotlin.system.measureNanoTime
 
 abstract class Day(
@@ -6,11 +7,12 @@ abstract class Day(
 ) {
     private val completeInputFileName = "input.txt"
     private val testInputFileName = "test_input.txt"
+    private val sep = FileSystems.getDefault().separator
     private val day = javaClass.simpleName.substringAfter("Day")
 
-    private val inputPath = "src\\day_$day\\inputs\\${if (useCompleteInput) completeInputFileName else testInputFileName}"
+    private val inputPath = "src${sep}day_$day${sep}inputs${sep}${if (useCompleteInput) completeInputFileName else testInputFileName}"
 
-    val readFileList: List<String> by lazy { File(inputPath).useLines { it.toList() } }
+    val readFileList: List<String> = File(inputPath).useLines { it.toList() }
 
     abstract fun part1(): Any
     abstract fun part2(): Any
