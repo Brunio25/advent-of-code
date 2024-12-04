@@ -1,6 +1,6 @@
-package day_01
+package solutions.day_01
 
-import Day
+import solutions.Day
 import kotlin.math.abs
 
 class Day01 : Day() {

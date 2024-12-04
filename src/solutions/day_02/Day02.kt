@@ -1,6 +1,6 @@
-package day_02
+package solutions.day_02
 
-import Day
+import solutions.Day
 import kotlin.math.absoluteValue
 
 class Day02 : Day() {
