@@ -1,16 +1,16 @@
-package solutions.day_04
+package solutions.y2024.day_04
 
 import helpers.Coordinates2D
 import kotlin.text.RegexOption.IGNORE_CASE
-import solutions.Day
-import solutions.day_04.Day04.Direction.DOWN
-import solutions.day_04.Day04.Direction.LEFT
-import solutions.day_04.Day04.Direction.LEFT_DOWN
-import solutions.day_04.Day04.Direction.LEFT_UP
-import solutions.day_04.Day04.Direction.RIGHT
-import solutions.day_04.Day04.Direction.RIGHT_DOWN
-import solutions.day_04.Day04.Direction.RIGHT_UP
-import solutions.day_04.Day04.Direction.UP
+import util.Day
+import solutions.y2024.day_04.Day04.Direction.DOWN
+import solutions.y2024.day_04.Day04.Direction.LEFT
+import solutions.y2024.day_04.Day04.Direction.LEFT_DOWN
+import solutions.y2024.day_04.Day04.Direction.LEFT_UP
+import solutions.y2024.day_04.Day04.Direction.RIGHT
+import solutions.y2024.day_04.Day04.Direction.RIGHT_DOWN
+import solutions.y2024.day_04.Day04.Direction.RIGHT_UP
+import solutions.y2024.day_04.Day04.Direction.UP
 
 class Day04 : Day() {
     enum class Direction {

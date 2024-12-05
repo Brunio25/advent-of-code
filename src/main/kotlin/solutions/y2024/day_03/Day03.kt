@@ -1,6 +1,6 @@
-package solutions.day_03
+package solutions.y2024.day_03
 
-import solutions.Day
+import util.Day
 
 class Day03 : Day() {
     private val input by lazy { readFileList.reduce { acc, s -> acc + s } }

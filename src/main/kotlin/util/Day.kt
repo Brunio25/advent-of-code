@@ -1,4 +1,4 @@
-package solutions
+package util
 
 import java.io.File
 import java.nio.file.FileSystems
