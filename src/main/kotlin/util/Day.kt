@@ -1,8 +1,8 @@
 package util
 
+import helpers.extensions.measureTimeMillis
 import java.io.File
 import java.nio.file.FileSystems
-import kotlin.system.measureNanoTime
 
 abstract class Day(
     useCompleteInput: Boolean = true
@@ -12,7 +12,8 @@ abstract class Day(
     private val sep = FileSystems.getDefault().separator
     private val day = javaClass.simpleName.substringAfter("Day")
 
-    private val inputPath = "src${sep}main${sep}kotlin${sep}solutions${sep}y2024${sep}day_$day${sep}inputs${sep}${if (useCompleteInput) completeInputFileName else testInputFileName}"
+    private val inputPath =
+        "src${sep}main${sep}kotlin${sep}solutions${sep}y2024${sep}day_$day${sep}inputs${sep}${if (useCompleteInput) completeInputFileName else testInputFileName}"
 
     val readFileList: List<String> = File(inputPath).useLines { it.toList() }
 
@@ -20,14 +21,23 @@ abstract class Day(
     abstract fun part2(): Any
 
     fun run() {
-        println("Day $day:")
+        val (p1Time, p1) = try {
+            measureTimeMillis { part1() }
+        } catch (e: NotImplementedError) {
+            0 to "Not Implemented"
+        }
+        val (p2Time, p2) = try {
+            measureTimeMillis { part2() }
+        } catch (e: NotImplementedError) {
+            0 to "Not Implemented"
+        }
 
-        measureNanoTime {
-            print("\tPart 1: ${part1()} | ")
-        }.let { println("$it ns\n") }
+        val message = """
+            Day $day:
+                Part 1: $p1 | $p1Time ms
+                Part 2: $p2 | $p2Time ms
+        """.trimIndent()
 
-        measureNanoTime {
-            print("\tPart 2: ${part2()} | ")
-        }.let { println("$it ns\n") }
+        println(message)
     }
 }
