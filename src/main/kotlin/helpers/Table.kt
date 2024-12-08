@@ -23,6 +23,8 @@ class Table<T : Any>(val matrix: List<List<T>>) {
         }
     }
 
+    val size: Int = matrix.size
+
     operator fun get(coordinates: Coordinates2D): T = matrix[coordinates.y][coordinates.x]
 
     operator fun iterator(): Iterator<T> = matrix.flatten().listIterator()
@@ -31,9 +33,9 @@ class Table<T : Any>(val matrix: List<List<T>>) {
 
     fun count(predicate: (T) -> Boolean): Int = matrix.sumOf { it.count(predicate) }
 
-    fun findAll(predicate: (T) -> Boolean): List<Coordinates2D> = matrix.flatMapIndexed { y, row ->
+    fun findAll(predicate: (T) -> Boolean): Set<Coordinates2D> = matrix.flatMapIndexed { y, row ->
         row.withIndex().filter { (_, col) -> predicate(col) }.map { (x, _) -> Coordinates2D(x, y) }
-    }
+    }.toSet()
 
     fun find(element: T): Coordinates2D {
         for (r in matrix.indices) {
