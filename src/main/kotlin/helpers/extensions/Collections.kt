@@ -1,5 +1,7 @@
 package helpers.extensions
 
+fun <T> List<T>.middle(): T = this[size / 2]
+
 fun <T> List<T>.split(predicate: (T) -> Boolean): Pair<List<T>, List<T>> {
     val elemIndex = indexOfFirst { predicate(it) }
     return if (elemIndex != -1) {
@@ -20,4 +22,14 @@ fun <T> MutableList<T>.swap(i1: Int, i2: Int) {
 
 fun <T> List<T>.swap(i1: Int, i2: Int): List<T> = toMutableList().also { it.swap(i1, i2) }
 
-fun <T> List<T>.middle(): T = this[size / 2]
+fun <T> MutableList<T>.swapRange(r1: IntRange, r2: IntRange) {
+    if (r1.count() != r2.count()) throw IllegalArgumentException("r1 $r1 must be the same length as r2 $r2")
+    r1.zip(r2).forEach { (i1, i2) -> swap(i1, i2) }
+}
+
+fun <T> MutableList<T>.replaceRange(range: IntRange, list: List<T>) {
+    if (range.count() != list.size)
+        throw IllegalArgumentException("Range $range must have the same number of elements as $list")
+
+    range.zip(list).forEach { (i, elem) -> this[i] = elem }
+}
