@@ -1,9 +1,8 @@
-package solutions.day_02
+package solutions.y2024
 
-import solutions.Day
 import kotlin.math.absoluteValue
 
-class Day02 : Day() {
+class Day02 : PuzzleDay(2024) {
     private val inputList by lazy { readFileList.map { line -> line.split("\\s+".toRegex()).map(String::toInt) } }
 
     override fun part1(): Int = inputList

@@ -1,8 +1,6 @@
-package solutions.day_03
+package solutions.y2024
 
-import solutions.Day
-
-class Day03 : Day() {
+class Day03 : PuzzleDay(2024) {
     private val input by lazy { readFileList.reduce { acc, s -> acc + s } }
 
     private val mulRegex = """mul\((\d{1,3}),(\d{1,3})\)""".toRegex()

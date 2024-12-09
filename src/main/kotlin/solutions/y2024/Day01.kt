@@ -1,9 +1,8 @@
-package solutions.day_01
+package solutions.y2024
 
-import solutions.Day
 import kotlin.math.abs
 
-class Day01 : Day() {
+class Day01 : PuzzleDay(2024) {
     private val inputList by lazy {
         readFileList.map { line ->
             line.split("\\s+".toRegex())
