@@ -9,7 +9,7 @@ import helpers.Table.Companion.Direction.RIGHT_UP
 import helpers.Table.Companion.Direction.LEFT_DOWN
 import helpers.Table.Companion.Direction.RIGHT_DOWN
 
-class Table<T : Any>(val matrix: List<List<T>>) {
+class Table<T>(val matrix: List<List<T>>) : Iterable<TableCell<T>> {
     companion object {
         enum class Direction(val calc: (Coordinates2D) -> Coordinates2D) {
             UP({ (x, y) -> Coordinates2D(x, y - 1) }),
@@ -27,7 +27,7 @@ class Table<T : Any>(val matrix: List<List<T>>) {
 
     operator fun get(coordinates: Coordinates2D): T = matrix[coordinates.y][coordinates.x]
 
-    operator fun iterator(): Iterator<T> = matrix.flatten().listIterator()
+    override operator fun iterator(): Iterator<TableCell<T>> = TableIterator()
 
     fun getRows(): List<List<T>> = matrix
 
@@ -79,4 +79,22 @@ class Table<T : Any>(val matrix: List<List<T>>) {
 
     fun inTable(coordinates: Coordinates2D): Boolean =
         coordinates.y in matrix.indices && coordinates.x in matrix[0].indices
+
+    private inner class TableIterator : AbstractIterator<TableCell<T>>() {
+        private var index: Int = 0
+
+        override fun computeNext() {
+            val y = index / size
+            val x = index % size
+            if (y > size - 1) {
+                done()
+                return
+            }
+
+            setNext(TableCell(coordinates = Coordinates2D(x, y), value = matrix[y][index % size]))
+            index += 1
+        }
+    }
 }
+
+data class TableCell<T>(val coordinates: Coordinates2D, val value: T)
