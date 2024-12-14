@@ -1,6 +1,8 @@
 package helpers.extensions
 
-fun <T> List<T>.middle(): T = this[size / 2]
+fun <T> List<T>.elementAtMiddle(): T = this[middle()]
+
+fun <T> List<T>.middle(): Int = size / 2
 
 fun <T> List<T>.split(predicate: (T) -> Boolean): Pair<List<T>, List<T>> {
     val elemIndex = indexOfFirst { predicate(it) }

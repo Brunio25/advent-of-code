@@ -1,7 +1,7 @@
 package solutions.y2024
 
 import helpers.graphs.UnidirectionalGraph
-import helpers.extensions.middle
+import helpers.extensions.elementAtMiddle
 import helpers.extensions.split
 import helpers.graphs.UnidirectionalGraph.Companion.UnidirectionalGraphBuilder
 
@@ -30,14 +30,14 @@ class Day05 : PuzzleDay(2024) {
 
     override fun part1(): Int = updates
         .filter { it.isValidUpdate() }
-        .sumOf { it.middle() }
+        .sumOf { it.elementAtMiddle() }
 
     override fun part2(): Int = updates
         .filter { !it.isValidUpdate() }
         .map { update ->
             update.correctUpdate()
         }
-        .sumOf { it.middle() }
+        .sumOf { it.elementAtMiddle() }
 
 
     private fun List<Int>.correctUpdate() = sortedWith { e1, e2 ->
