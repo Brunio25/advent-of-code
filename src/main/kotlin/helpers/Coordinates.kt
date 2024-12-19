@@ -41,6 +41,10 @@ data class Coordinates2DLong(val x: Long, val y: Long) {
 }
 
 data class Vector(val angle: Double, val magnitude: Double) {
+    companion object {
+        fun fromOrigin(x: Int, y: Int): Vector = Coordinates2D(0, 0).vector(Coordinates2D(x, y))
+    }
+
     val xComponent: Int by lazy { (magnitude * cos(angle)).roundToInt() }
     val yComponent: Int by lazy { (magnitude * sin(angle)).roundToInt() }
 

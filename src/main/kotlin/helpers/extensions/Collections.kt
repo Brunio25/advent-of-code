@@ -35,3 +35,11 @@ fun <T> MutableList<T>.replaceRange(range: IntRange, list: List<T>) {
 
     range.zip(list).forEach { (i, elem) -> this[i] = elem }
 }
+
+inline fun <T> Iterable<T>.multiplyOf(selector: (T) -> Long): Long {
+    var mult = 1L
+    for (element in this) {
+        mult *= selector(element)
+    }
+    return mult
+}
